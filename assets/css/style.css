@@ -1,0 +1,51 @@
+body {
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #333;
+    background-color: #b7c4c4;
+    text-align: center !important;
+}
+ #title {
+     padding-top: 70px;
+ }
+
+ h2 {
+     padding: 8px;
+ }
+
+ p {
+     margin: 10px;
+ }
+
+/*HEADER*/
+header {
+    background: black;
+}
+
+.navbar {
+    
+    overflow: hidden;
+    border-bottom: 3px solid #444444;
+    box-shadow: grey;
+}
+
+.fixed-top {
+    position: fixed;
+    top: -30px;
+    right: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+#brand {
+    padding-bottom: 5px;
+    color: #9FA16A;
+    position: absolute;
+    font-size: 1.5em;
+}
+
+
+#menu {
+    height: 50px;
+}

@@ -1,4 +1,5 @@
-<h1>Nos articles</h1>
+
+<h2 id="title">Nos episodes :</h2>
 
 <?php foreach ($articles as $article) : ?>
     <h2><?= $article['title'] ?></h2>

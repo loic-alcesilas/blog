@@ -14,7 +14,15 @@
         <div class="container" style="justify-content: center">     
             <h1 id="brand">Blog de Jean forteroche</h1>
         </div>
-    </header>
+</header>
+    <div class="presentation">
+        <img src="assets/img/aurora.jpg" alt="">
+        <div>
+            <h1>Un roman écrit par <span>Jean Forteroche</span></h1>
+            <p>Un billet simple pour l'alaska ce roman vous fera voyager au plus profond des montagnes</p>
+            <input type="button" value="Découvrire" >
+        </div>
+    </div>
     <?= $pageContent ?>
 </body>
 

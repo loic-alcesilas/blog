@@ -20,13 +20,13 @@ body {
 
 /*HEADER*/
 header {
-    background: black;
+    background: #222222;
 }
 
 .navbar {
     
     overflow: hidden;
-    border-bottom: 3px solid #444444;
+    border-bottom: 3px solid #9FA16A;
     box-shadow: grey;
 }
 
@@ -49,3 +49,52 @@ header {
 #menu {
     height: 50px;
 }
+
+/*presentation*/
+
+.presentation img{
+    display: flex;
+    width: 100%;
+}
+
+.presentation span {
+    color: #9FA16A;
+}
+
+.presentation div {
+    position: absolute;
+    top: 50%;
+    transform: translateX(50%);
+    
+}
+
+.presentation h1 {
+    font-weight: bold;
+    font-size: 3em;
+    color: white;
+    width: 60%;
+    line-height: 1;
+    text-transform: uppercase;
+}
+
+.presentation p{
+    color: white;
+    margin-top: 10px;
+    width: 55%;
+    font-size: 1.5em;
+}
+
+.presentation input {
+    margin-top: 10px;
+    background-color: #9FA16A;
+    padding: 10px;
+    border-radius: 3px;
+    border: transparent;
+    box-shadow: 0px 2px 0px #9FA16A;
+    color: white;
+    font-size: 1em;
+    width: 15%;
+    display: block;
+    margin-left: 210px;
+    margin-top: 30px;
+  }

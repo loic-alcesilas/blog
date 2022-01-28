@@ -3,6 +3,7 @@
 <p><?= $article['introduction'] ?></p>
 <hr>
 <?= $article['content'] ?>
+<a href="index.php?<?= $article['id'] ?>">Retour aux épisodes</a>
 
 <?php if (count($commentaires) === 0) : ?>
     <h2>Il n'y a pas encore de commentaires pour cet article ... SOYEZ LE PREMIER ! :D</h2>

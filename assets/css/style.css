@@ -18,6 +18,7 @@ body {
      margin: 10px;
  }
 
+
 /*HEADER*/
 header {
     background: #222222;
@@ -55,6 +56,7 @@ header {
 .presentation img{
     display: flex;
     width: 100%;
+    position: relative;
 }
 
 .presentation span {
@@ -63,7 +65,7 @@ header {
 
 .presentation div {
     position: absolute;
-    top: 50%;
+    top: 20%;
     transform: translateX(50%);
     
 }
@@ -97,4 +99,70 @@ header {
     display: block;
     margin-left: 210px;
     margin-top: 30px;
+  }
+
+  /*article*/
+
+  .article  {
+    width: 60% !important;
+    padding-bottom: 10px;
+    padding-top: 15px;
+    background-color: #f6f6f6;
+    text-align: center !important;
+    border-radius: 20px;
+  }
+
+  .article a {
+      color: #9FA16A;
+      padding: 30px;
+  }
+
+  .article a:hover {
+    color: #9FA16A;
+}
+
+
+
+  /*commentaires*/
+
+  .form-group {
+      width: 60%;
+      margin-bottom: 1rem;
+  }
+
+  .form-group button {
+    background-color: #9FA16A;
+    padding: 10px;
+    border-radius: 3px;
+    border: transparent;
+    color: white;
+    font-size: 1em;
+    display: block;
+  }
+
+  .form-control {
+    display: block;
+    width: 100%;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+  }
+
+  .comment {
+    width: 60% !important;
+    padding-bottom: 15px;
+    background-color: #f6f6f6;
+    text-align: center !important;
+    border-radius: 20px;
+  }
+
+  .comment span {
+      color: #9FA16A ;
+      text-transform: capitalize;
   }

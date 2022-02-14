@@ -55,7 +55,7 @@ class Article extends Controller {
         
         /**
          * 4. Récupération des commentaires de l'article en question
-         * Pareil, toujours une requête préparée pour sécuriser la donnée filée par l'utilisateur (cet enfoiré en puissance !)
+         * Pareil, toujours une requête préparée pour sécuriser la donnée filée par l'utilisateur 
          */
         $commentaires = $commentModel->findAllWithArticle($article_id);
         

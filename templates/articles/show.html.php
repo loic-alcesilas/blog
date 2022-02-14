@@ -1,10 +1,11 @@
-<h1 style="padding-top: 65px;"><?= $article['title'] ?></h1>
+<div class="article col-md-8 ml-auto mr-auto text-left ">
+<h1><?= $article['title'] ?></h1>
 <small>Ecrit le <?= $article['created_at'] ?></small>
 <p><?= $article['introduction'] ?></p>
 <hr>
 <?= $article['content'] ?>
 <a href="index.php?<?= $article['id'] ?>">Retour aux épisodes</a>
-
+</div>
 <form class="d-flex flex-column align-items-center" action="index.php?controller=comment&task=insert" method="POST">
     <h3 class="pt-3">Vous voulez réagir ?</h3>
     <div class="form-group">

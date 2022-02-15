@@ -4,7 +4,7 @@
 <p><?= $article['introduction'] ?></p>
 <hr>
 <?= $article['content'] ?>
-<a href="index.php?<?= $article['id'] ?>">Retour aux épisodes</a>
+<a href="index.php?">Retour aux épisodes</a>
 </div>
 <form class="d-flex flex-column align-items-center" action="index.php?controller=comment&task=insert" method="POST">
     <h3 class="pt-3">Vous voulez réagir ?</h3>

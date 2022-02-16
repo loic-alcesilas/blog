@@ -238,3 +238,18 @@ input[type=submit]:hover {
     color: #9FA16A;
     border: 1px solid #9FA16A;
 }
+
+/*footer*/
+
+footer {
+    background: #222222;
+    border-bottom: 3px solid #222222;
+}
+
+footer span {
+    color: #9FA16A;
+}
+
+footer span:hover {
+    color: #9FA16A;
+}

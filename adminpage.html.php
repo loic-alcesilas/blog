@@ -1,3 +1,26 @@
+<!-- Affichage des Articles dans un Form -->
+<?php
+session_start();
+// On inclut la connexion à la base
+require_once('connectAdmin.php');
+
+// On écrit notre requête
+$sql = 'SELECT * FROM `articles`';
+
+// On prépare la requête
+$query = $db->prepare($sql);
+
+// On exécute la requête
+$query->execute();
+
+// On stocke le résultat dans un tableau associatif
+$result = $query->fetchAll(PDO::FETCH_ASSOC);
+
+require_once('close.php');
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,12 +32,12 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="https://cdn.tiny.cloud/1/j7qj83cn44023cf2pic6ye20z1lfxozuoo80452dlkigamzo/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
 </head>
+
 <body>
     <div id="content">
         <!-- tester si l'utilisateur est connecté -->
         <a href='index.php?deconnexion=true'><span>Déconnexion</span></a>
         <?php
-        session_start();
         if (isset($_GET['deconnexion'])) {
             if ($_GET['deconnexion'] == true) {
                 session_unset();
@@ -27,10 +50,56 @@
         }
         ?>
     </div>
-    <h1>Editeur de chapitre</h1>
-    <form method="post">
-      <textarea id="mytextarea">Votre nouveau chapitre :</textarea>
-    </form>
+    <main class="container">
+        <div class="row">
+            <section>
+            <?php
+                    if(!empty($_SESSION['erreur'])){
+                        echo '<div class="alert alert-danger" role="alert">
+                                '. $_SESSION['erreur'].'
+                            </div>';
+                        $_SESSION['erreur'] = "";
+                    }
+                ?>
+                <?php
+                    if(!empty($_SESSION['message'])){
+                        echo '<div class="alert alert-success" role="alert">
+                                '. $_SESSION['message'].'
+                            </div>';
+                        $_SESSION['message'] = "";
+                    }
+                ?>
+    <h1>Liste des Articles</h1>
+    <table>
+        <thead>
+            <th>ID</th>
+            <th>title</th>
+            <th>slug</th>
+            <th>introduction</th>
+            <th>content</th>
+            <th>créé le</th>
+        </thead>
+        <tbody>
+            <?php
+            foreach ($result as $articles) {
+            ?>
+                <tr>
+                    <td><?= $articles['id'] ?></td>
+                    <td><?= $articles['title'] ?></td>
+                    <td><?= $articles['slug'] ?></td>
+                    <td><?= $articles['introduction'] ?></td>
+                    <td><?= $articles['content'] ?></td>
+                    <td><?= $articles['created_at'] ?></td>
+                    <td><a href="details.html.php?controller=article&task=show&id=<?= $articles['id'] ?>">Voir</a> <a href="<?= $articles['id'] ?>">Modifier</a> <a href="index.php?controller=article&task=delete&id=<?= $article['id'] ?>" onclick="return window.confirm(`Êtes vous sur de vouloir supprimer cet article ?!`)">Supprimer</a></td>
+                </tr>
+            <?php
+            }
+            ?>
+        </tbody>
+    </table>
+    <a href="add.php">Ajouter</a>
+            </section>
+        </div>
+    </main>
 </body>
- <script type="text/javascript" src="assets/js/tinymce.js"></script> 
 </html>

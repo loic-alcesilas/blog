@@ -6,6 +6,7 @@ class Application
     {
         $controllerName = "Article";
         $task = "index";
+        
 
         if (!empty($_GET['controller'])) {
             $controllerName = ucfirst($_GET['controller']);

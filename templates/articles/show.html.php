@@ -6,6 +6,7 @@
 <?= $article['content'] ?>
 <a href="index.php?">Retour aux épisodes</a>
 </div>
+
 <form class="d-flex flex-column align-items-center" action="index.php?controller=comment&task=insert" method="POST">
     <h3 class="pt-3">Vous voulez réagir ?</h3>
     <div class="form-group">

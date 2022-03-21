@@ -90,7 +90,7 @@ require_once('close.php');
                     <td><?= $articles['introduction'] ?></td>
                     <td><?= $articles['content'] ?></td>
                     <td><?= $articles['created_at'] ?></td>
-                    <td><a href="details.html.php?controller=article&task=show&id=<?= $articles['id'] ?>">Voir</a> <a href="<?= $articles['id'] ?>">Modifier</a> <a href="index.php?controller=article&task=delete&id=<?= $article['id'] ?>" onclick="return window.confirm(`Êtes vous sur de vouloir supprimer cet article ?!`)">Supprimer</a></td>
+                    <td><a href="details.php?controller=article&task=detail&id=<?= $articles['id'] ?>">Voir</a> <a href="<?= $articles['id'] ?>">Modifier</a> <a href="index.php?controller=article&task=delete&id=<?= $article['id'] ?>" onclick="return window.confirm(`Êtes vous sur de vouloir supprimer cet article ?!`)">Supprimer</a></td>
                 </tr>
             <?php
             }

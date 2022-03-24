@@ -52,7 +52,7 @@ if(isset($_GET['id']) && !empty($_GET['id'])){
                 <p>introduction : <?= $articles['introduction'] ?></p>
                 <p>content : <?= $articles['content'] ?></p>
                 <p>créé le : <?= $articles['created_at'] ?></p>
-                <p><a href="adminpage.html.php">Retour</a> <a href="edit.php?id=<?= $articles['id'] ?>">Modifier</a></p>
+                <p><a href="adminpage.html.php">Retour</a> <a href="editPost.php?controller=article&task=detail&id=<?= $articles['id'] ?>">Modifier</a> <a href="index.php?controller=article&task=delete&id=<?= $articles['id'] ?>" onclick="return window.confirm(`Êtes vous sur de vouloir supprimer cet article ?!`)">Supprimer</a></td></p>
             </section>
         </div>
     </main>

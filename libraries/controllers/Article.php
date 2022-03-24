@@ -24,39 +24,6 @@ class Article extends Controller {
         
     }
 
-    public function detail(){
-        //montrer un article
-        $commentModel = new \Models\Comment();
-
-        /**
-         * 1. Récupération du param "id" et vérification de celui-ci
-         */
-        // On part du principe qu'on ne possède pas de param "id"
-
-        $article_id = null;
-        
-        // Mais si il y'en a un et que c'est un nombre entier, alors c'est cool
-        if (!empty($_GET['id']) && ctype_digit($_GET['id'])) {
-            $article_id = $_GET['id'];
-        }
-
-         /**
-         * 3. Récupération de l'article en question
-         * On va ici utiliser une requête préparée car elle inclue une variable qui provient de l'utilisateur
-         */
-        
-        $article = $this->model->find($article_id);
-
-        /**
-         * 5. On affiche 
-         */
-
-        $pageTitle = $article['title'];
-
-        \Http::redirect("details.php?controller=article&task=detail&id=" . $article_id);
-        \renderer::render('articles/details', compact('pageTitle', 'article', 'article_id'));
-    }
-
 
     public function show()
     {
@@ -119,8 +86,8 @@ class Article extends Controller {
          */
         //$query = $pdo->prepare('SELECT * FROM articles WHERE id = :id');
         //$query->execute(['id' => $id]);
-        $article = $this->model->find($id);
-        if (!$article) {
+        $articles = $this->model->find($id);
+        if (!$articles) {
             die("L'article $id n'existe pas, vous ne pouvez donc pas le supprimer !");
         }
         

@@ -1,103 +1,102 @@
-<!-- Affichage des Articles dans un Form -->
-<?php
-session_start();
-// On inclut la connexion à la base
-require_once('connectAdmin.php');
-
-// On écrit notre requête
-$sql = 'SELECT * FROM `articles`';
-
-// On prépare la requête
-$query = $db->prepare($sql);
-
-// On exécute la requête
-$query->execute();
-
-// On stocke le résultat dans un tableau associatif
-$result = $query->fetchAll(PDO::FETCH_ASSOC);
-
-require_once('close.php');
-?>
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <script src="https://cdn.tiny.cloud/1/j7qj83cn44023cf2pic6ye20z1lfxozuoo80452dlkigamzo/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+    <title>Administration</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+
+    <style>
+        .wrapper {
+            width: 700px;
+            margin: 0 auto;
+        }
+
+        table tr td:last-child {
+            width: 120px;
+        }
+    </style>
+
 </head>
 
 <body>
-    <div id="content">
-        <!-- tester si l'utilisateur est connecté -->
-        <a href='index.php?deconnexion=true'><span>Déconnexion</span></a>
-        <?php
-        if (isset($_GET['deconnexion'])) {
-            if ($_GET['deconnexion'] == true) {
-                session_unset();
-                header("location: index.php");
-            }
-        } else if ($_SESSION['username'] !== "") {
-            $user = $_SESSION['username'];
-            // afficher un message
-            echo "<br>Bonjour $user, vous êtes connectés<br>";
-        }
-        ?>
-    </div>
-    <main class="container">
-        <div class="row">
-            <section>
-            <?php
-                    if(!empty($_SESSION['erreur'])){
-                        echo '<div class="alert alert-danger" role="alert">
-                                '. $_SESSION['erreur'].'
-                            </div>';
-                        $_SESSION['erreur'] = "";
+    <div class="wrapper">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                <div id="content">
+                        <!-- tester si l'utilisateur est connecté -->
+                        <a href='index.php?deconnexion=true'><span class="justify-content-center" >Déconnexion</span></a>
+                        <?php
+                        if (isset($_GET['deconnexion'])) {
+                            if ($_GET['deconnexion'] == true) {
+                                session_unset();
+                                header("location: index.php");
+                            }
+                        }
+
+                        ?>
+                    </div>
+                    <div class="mt-5 mb-3 d-flex justify-content-center">
+                        <h2 class="pull-left">Liste des chapitres</h2>
+                    </div>
+                    <a class="btn btn-primary " href="commentManager.php">Commentaires</a>
+                        <a href="create.php" class="btn btn-success m-4"><i class="bi bi-plus"></i> Ajouter</a>
+                    <?php
+                    /* Inclure le fichier config */
+                    require_once "config.php";
+
+                    /* select query execution */
+                    $sql = "SELECT * FROM articles ORDER BY title ASC ";
+
+                    if ($result = mysqli_query($link, $sql)) {
+                        if (mysqli_num_rows($result) > 0) {
+                            echo '<table class="table table-bordered table-striped table-responsive">';
+                            echo "<thead>";
+                            echo "<tr>";
+                            echo "<th>id</th>";
+                            echo "<th>title</th>";
+                            echo "<th>slug</th>";
+                            echo "<th>introduction</th>";
+                            echo "<th>content</th>";
+                            echo "<th>action</th>";
+                            echo "</tr>";
+                            echo "</thead>";
+                            echo "<tbody>";
+                            while ($row = mysqli_fetch_array($result)) {
+                                echo "<tr>";
+                                echo "<td>" . $row['id'] . "</td>";
+                                echo "<td>" . $row['title'] . "</td>";
+                                echo "<td>" . $row['slug'] . "</td>";
+                                echo "<td>" . $row['introduction'] . "</td>";
+                                echo "<td>" . $row['content'] . "</td>";
+                                echo "<td>";
+                                echo '<a href="details.html.php?id=' . $row['id'] . '" class="me-3" ><span class="bi bi-eye"></span></a>';
+                                echo '<a href="update.php?id=' . $row['id'] . '" class="me-3" ><span class="bi bi-pencil"></span></a>';
+                                echo '<a href="index.php?controller=article&task=delete&id=' . $row['id'] . '" ?><span class="bi bi-trash"></span></a>';
+                                echo "</td>";
+                                echo "</tr>";
+                            }
+                            echo "</tbody>";
+                            echo "</table>";
+                            /* Free result set */
+                            mysqli_free_result($result);
+                        } else {
+                            echo '<div class="alert alert-danger"><em>Pas d\'enregistrement</em></div>';
+                        }
+                    } else {
+                        echo "Oops! Une erreur est survenue";
                     }
-                ?>
-                <?php
-                    if(!empty($_SESSION['message'])){
-                        echo '<div class="alert alert-success" role="alert">
-                                '. $_SESSION['message'].'
-                            </div>';
-                        $_SESSION['message'] = "";
-                    }
-                ?>
-    <h1>Liste des Articles</h1>
-    <table>
-        <thead>
-            <th>ID</th>
-            <th>title</th>
-            <th>slug</th>
-            <th>introduction</th>
-            <th>content</th>
-            <th>créé le</th>
-        </thead>
-        <tbody>
-            <?php
-            foreach ($result as $articles) {
-            ?>
-                <tr>
-                    <td><?= $articles['id'] ?></td>
-                    <td><?= $articles['title'] ?></td>
-                    <td><?= $articles['slug'] ?></td>
-                    <td><?= $articles['introduction'] ?></td>
-                    <td><?= $articles['content'] ?></td>
-                    <td><?= $articles['created_at'] ?></td>
-                    <td><a href="details.php?controller=article&task=detail&id=<?= $articles['id'] ?>">Voir</a> <a href="editPost.php?controller=article&task=insert&id=<?= $articles['id'] ?>">Modifier</a> <a href="index.php?controller=article&task=delete&id=<?= $articles['id'] ?>" onclick="return window.confirm(`Êtes vous sur de vouloir supprimer cet article ?!`)">Supprimer</a></td>
-                </tr>
-            <?php
-            }
-            ?>
-        </tbody>
-    </table>
-    <a href="add.php">Ajouter</a>
-            </section>
+
+                    /* Fermer connection */
+                    mysqli_close($link);
+                    ?>
+                </div>
+            </div>
         </div>
-    </main>
+    </div>
 </body>
+
 </html>

@@ -1,3 +1,4 @@
+<meta charset="utf-8" />
 <header class="container-fluid pb-1 navbar fixed-top" id="menu">
     <div class="container" style="justify-content: center">
         <h1 id="brand">Blog de Jean forteroche</h1>
@@ -8,7 +9,7 @@
     <div>
         <h1>Un roman écrit par <span>Jean Forteroche</span></h1>
         <p>Un billet simple pour l'alaska ce roman vous fera voyager au plus profond des montagnes</p>
-        <input type="button" value="Découvrire">
+        <input type="button" value="Découvrire" href="index.php?controller=article&task=show&id=141">
     </div>
 </div>
 
@@ -17,7 +18,6 @@
 
     <?php foreach ($articles as $article) : ?>
         <h2><?= $article['title'] ?></h2>
-        <small>Ecrit le <?= $article['created_at'] ?></small>
         <p><?= $article['introduction'] ?></p>
         <a href="index.php?controller=article&task=show&id=<?= $article['id'] ?>">Lire la suite</a>
     <?php endforeach ?>

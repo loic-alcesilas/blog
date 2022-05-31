@@ -14,7 +14,7 @@ class Article extends Controller {
          * 2. Récupération des articles
          */
         
-        $articles = $this->model->findAll("created_at DESC");
+        $articles = $this->model->findAll("title ASC ");
         
         /**
          * 3. Affichage
@@ -24,7 +24,7 @@ class Article extends Controller {
         
     }
 
-
+    
     public function show()
     {
         //montrer un article 
@@ -59,7 +59,7 @@ class Article extends Controller {
          * Pareil, toujours une requête préparée pour sécuriser la donnée filée par l'utilisateur 
          */
         $commentaires = $commentModel->findAllWithArticle($article_id);
-        
+
         /**
          * 5. On affiche 
          */
@@ -100,6 +100,6 @@ class Article extends Controller {
          * 5. Redirection vers la page d'accueil
          */
         
-        \Http::redirect("index.php");
+        \Http::redirect("adminpage.html.php");
     }
 }

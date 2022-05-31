@@ -94,7 +94,7 @@ class Comment extends Controller {
          */
         
         
-        \Http::redirect("index.php?controller=article&task=show&id=" . $article_id);
+        \Http::redirect("commentManager.php");
     }
 
 }

@@ -1,6 +1,5 @@
 <div class="article col-md-8 ml-auto mr-auto text-left ">
 <h1><?= $article['title'] ?></h1>
-<small>Ecrit le <?= $article['created_at'] ?></small>
 <p><?= $article['introduction'] ?></p>
 <hr>
 <?= $article['content'] ?>
@@ -33,7 +32,6 @@
         <blockquote>
             <em><?= $commentaire['content'] ?></em>
         </blockquote>
-        <a href="index.php?controller=comment&task=delete&id=<?= $commentaire['id'] ?>" onclick="return window.confirm(`Êtes vous sûr de vouloir supprimer ce commentaire ?!`)">Supprimer</a><br>
         <div class="border-bottom border-secondary m-3"></div>
     <?php endforeach ?>
 <?php endif ?>
